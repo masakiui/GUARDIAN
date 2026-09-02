@@ -88,3 +88,91 @@ font-size: 14px;
 /*======================
   Hero
   ===================*/
+.haro {
+  min-height: 650px;
+
+display: flex;
+  align-itms: center;
+
+background:
+  linear-gradinet(
+    90deg,
+    #f5f7fa,
+    #ffffff,
+    );
+}
+
+.hero-inner {
+  padding: 100px 0;
+}
+
+.hero-label {
+  font-sixe: 12px;
+  font-weiht: 700;
+  letter-spacing: 0.2em;
+  color: #777;
+
+margin-bottom: 15px;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+
+margin-bottom: 30px;
+}
+
+.hero h1 strong {
+  font-weigtht: 800;
+}
+
+.hero-description {
+  max-width: 650px;
+  color: #555;
+
+margin-bottom: 35px;
+}
+
+/*=========================
+Buttons
+=========================*/
+.primary-botton,
+.secondary-button {
+  display: inline-block;
+
+padding: 14px 28px;
+
+border-radius: 6px;
+
+font-weight: 700;
+
+transition: 0.2s;
+}
+
+.primary-button {
+  background: #222;
+  color: white;
+}
+
+.primary-button:hover {
+  opacity: 0.8;
+}
+
+.secondary-button {
+  border: 1px solid #222;
+}
+
+.secondary-button:hover {
+  background: #222;
+  color: white;
+}
+
+/*===========================
+Secton
+==========================*/
+
+.section {
+  padding: 100px 0;
+}
+  
