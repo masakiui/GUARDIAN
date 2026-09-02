@@ -176,3 +176,101 @@ Secton
   padding: 100px 0;
 }
   
+.section-heading {
+  margin-bottom: 50px;
+}
+
+.section-heading h2 {
+  font-size: 38px;
+  line-height: 1.4;
+}
+
+/*============================
+About
+============================*/
+
+.about {
+  background: #fafafa;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.about-card {
+  padding: 35px;
+
+background: white;
+  border: 1px solid #eee;
+}
+
+.number {
+  font-size: 13px;
+  color: #888;
+
+margin-bottom: 15px;
+}
+
+.about-card h3 {
+  margin-bottom: 15px;
+}
+
+.about-card p {
+  font-size: 14px;
+  color: #666;
+}
+
+/*==========================================
+Search
+==========================================*/
+
+.search-box {
+  display: grid;
+  grid-template-columns: 1fr 220px 120px;
+  gap: 10px;
+
+margin-bottom: 40px;
+}
+
+.search-box input,
+.search-box select {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+
+padding: 14px 15px;
+
+background: white;
+}
+
+.search-box button {
+  border: none;
+  border-radius: 6px;
+  
+background: #222;
+  color: white;
+
+cursor: pointer;
+}
+
+.search-box bottn:hover {
+  opacity: 0.8;
+}
+
+/*==============================
+Job cards
+=============================*/
+
+.job-list {
+  display: grid;
+  grp: 20px;
+}
+
+.job-card {
+  padding: 30px;
+
+border: 1px solid #e5e5e5;
+  border-radius: 8px;
+
+cursor: pointer;
