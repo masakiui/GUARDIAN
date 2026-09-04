@@ -1,15 +1,254 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initiale=1.0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>GUARDIAN|職場を知ってから応募できる求人サイト</title>
+  <title>GUARDIAN｜職場を知ってから応募できる求人サイト</title>
 
-    <meta
-      name="description"
-      content="GUARDIANは、応募する前に職場の雰囲気や職員の声を知ることができる求人サイトです。">
+  <meta
+    name="description"
+    content="GUARDIANは、応募する前に職場の雰囲気や職員の声を知ることができる求人サイトです。"
+  >
 
-    <link rel="stylesheet" href="style.css">
-  </head>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
   <!-- =========================
+       Header
+  ========================== -->
+  <header class="header">
+    <div class="container header-inner">
+
+      <a href="#" class="logo">
+        <span class="logo-main">GUARDIAN</span>
+        <span class="logo-sub">職場を知ってから、応募する。</span>
+      </a>
+
+      <nav class="nav">
+        <a href="#jobs">求人を探す</a>
+        <a href="#about">GUARDIANとは</a>
+        <a href="#facility">施設の方へ</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- =========================
+       Hero
+  ========================== -->
+  <main>
+
+    <section class="hero">
+      <div class="container hero-inner">
+
+        <div class="hero-text">
+
+          <p class="hero-label">RECRUITMENT PLATFORM</p>
+
+          <h1>
+            応募する前に、<br>
+            <strong>職場を知ろう。</strong>
+          </h1>
+
+          <p class="hero-description">
+            GUARDIANは、求人情報だけでは分からない
+            「職場の雰囲気」や「職員の声」を知ってから、
+            自分に合う職場を探せる求人サイトです。
+          </p>
+
+          <a href="#jobs" class="primary-button">
+            求人を探す
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================
+         About
+    ========================== -->
+    <section id="about" class="section about">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="section-label">ABOUT GUARDIAN</p>
+          <h2>求人票だけでは、<br>分からないことがある。</h2>
+        </div>
+
+        <div class="about-grid">
+
+          <div class="about-card">
+            <div class="number">01</div>
+            <h3>職場を知る</h3>
+            <p>
+              職場の雰囲気や1日の仕事の流れ、
+              写真などから実際に働く姿を想像できます。
+            </p>
+          </div>
+
+          <div class="about-card">
+            <div class="number">02</div>
+            <h3>職員の声を見る</h3>
+            <p>
+              匿名で掲載された職員の声から、
+              良かったことだけでなく大変なことも知ることができます。
+            </p>
+          </div>
+
+          <div class="about-card">
+            <div class="number">03</div>
+            <h3>納得して応募する</h3>
+            <p>
+              分からないことは問い合わせて、
+              自分に合う職場だと思えたら応募できます。
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         Jobs
+    ========================== -->
+    <section id="jobs" class="section jobs">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="section-label">JOBS</p>
+          <h2>求人を探す</h2>
+        </div>
+
+
+        <!-- Search -->
+        <div class="search-box">
+
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="園名・職種などで検索"
+          >
+
+          <select id="jobTypeFilter">
+            <option value="">すべての職種</option>
+            <option value="保育士">保育士</option>
+            <option value="調理師">調理師</option>
+            <option value="栄養士">栄養士</option>
+          </select>
+
+          <button id="searchButton">
+            検索
+          </button>
+
+        </div>
+
+
+        <!-- Job list -->
+        <div id="jobList" class="job-list"></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         Facility
+    ========================== -->
+    <section id="facility" class="section facility">
+
+      <div class="container">
+
+        <div class="facility-box">
+
+          <div>
+            <p class="section-label">FOR FACILITIES</p>
+
+            <h2>
+              求人を掲載する<br>
+              園・事業者の方へ
+            </h2>
+
+            <p>
+              GUARDIANでは、求人情報だけでなく、
+              職場の雰囲気や職員の声など、
+              求職者が働く前に知りたい情報を掲載できます。
+            </p>
+
+            <p class="price">
+              正式公開時：<strong>1求人 月額3,000円</strong>
+            </p>
+
+            <p class="beta">
+              ※現在はβテストを予定しています。
+            </p>
+
+          </div>
+
+          <a href="mailto:example@example.com" class="secondary-button">
+            掲載について問い合わせる
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       Footer
+  ========================== -->
+  <footer class="footer">
+
+    <div class="container">
+
+      <div class="footer-logo">
+        GUARDIAN
+      </div>
+
+      <p>
+        職場を知ってから、応募する。
+      </p>
+
+      <small>
+        © 2026 GUARDIAN
+      </small>
+
+    </div>
+
+  </footer>
+
+
+  <!-- Job modal -->
+  <div id="jobModal" class="modal">
+
+    <div class="modal-content">
+
+      <button id="closeModal" class="modal-close">
+        ×
+      </button>
+
+      <div id="modalBody"></div>
+
+    </div>
+
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
