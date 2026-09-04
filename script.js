@@ -1,6 +1,6 @@
 /*
-GUARDIAN βテスト版
-求人データ
+  GUARDIAN β版
+  求人データ
 */
 
 const jobs = [
@@ -8,14 +8,13 @@ const jobs = [
     id: 1,
     facility: "ひかりこども園",
     jobType: "保育士",
-employment: "正社員",
-    salary: "月給　21,000円～",
-    location: ”岡山市南区”,
-    workingHours: "7:00~19:00の間でシフト制",
+    employment: "正社員",
+    salary: "月給 210,000円〜",
+    location: "岡山市南区",
+    workingHours: "7:00〜19:00の間でシフト制",
 
-    
-atmosphere:
-  "職員同士で相談しやすく、子供一人ひとりに向き合うことを大切にしている職場です。",
+    atmosphere:
+      "職員同士で相談しやすく、子ども一人ひとりに向き合うことを大切にしている職場です。",
 
     good:
       "先輩職員に相談しやすいところです。",
@@ -24,75 +23,75 @@ atmosphere:
       "行事前は準備が多く、忙しくなる時期があります。",
 
     suitable:
-      "子供とじっくり関わりたい方に向いてます。"
+      "子どもとじっくり関わりたい方に向いています。",
 
     phone: "090-0000-0000",
 
-  phoneAvailadle: true,
+    phoneAvailable: true,
 
-application: true
-},
+    application: true
+  },
 
-{
-  id: 2,
+  {
+    id: 2,
     facility: "みどり保育園",
-  jobType: "保育士",
+    jobType: "保育士",
     employment: "パート",
-    salary: "時給　1,200円～",
-    location: "岡山県北区",
-    workingHours: "8:00~17:00",
+    salary: "時給 1,200円〜",
+    location: "岡山市北区",
+    workingHours: "8:00〜17:00",
 
     atmosphere:
-  "比較的少人数で、職員同士のコミュニケーションを大切にしています。",
+      "比較的少人数の職場で、職員同士のコミュニケーションを大切にしています。",
 
     good:
-  "勤務時間について相談しやすいところです。",
-  
+      "勤務時間について相談しやすいところです。",
+
     difficult:
-  "時間帯によって忙しさに差があります。",
+      "時間帯によって忙しさに差があります。",
 
     suitable:
-  "家庭との両立を考えている方にも向いています。",
+      "家庭との両立を考えている方にも向いています。",
 
     phone: null,
 
-    phonAvailable: false,
+    phoneAvailable: false,
 
     application: true
-},
+  },
 
-{
-  id: 3
-      facility: "そらの園",
-  jobType: "調理師",
+  {
+    id: 3,
+    facility: "そらの園",
+    jobType: "調理師",
     employment: "正社員",
-    salary: "月給　190,000円～",
-    location: "岡山県南区",
-    workingHours: "8:00~17:00",
+    salary: "月給 190,000円〜",
+    location: "岡山市南区",
+    workingHours: "8:00〜17:00",
 
     atmosphere:
-  "子どもたちの食事を通して成長を支えることを大切にしています。",
+      "子どもたちの食事を通して成長を支えることを大切にしています。",
 
     good:
-  "子供たちから直接『おいしかった』と言ってもらえることがあります。",
-  
+      "子どもたちから直接『おいしかった』と言ってもらえることがあります。",
+
     difficult:
-  "大量調理のため、時間管理が重要です。",
+      "大量調理のため、時間管理が重要です。",
 
     suitable:
-  "食を通して子供たちを支えたい方に向いています。",
+      "食を通して子どもたちを支えたい方に向いています。",
 
     phone: "090-1111-1111",
 
-    phonAvailable: true,
+    phoneAvailable: true,
 
     application: true
-}
+  }
 ];
 
 
 /*
-dom
+  DOM
 */
 
 const jobList = document.getElementById("jobList");
@@ -100,255 +99,268 @@ const searchInput = document.getElementById("searchInput");
 const jobTypeFilter = document.getElementById("jobTypeFilter");
 const searchButton = document.getElementById("searchButton");
 
-const modal = document.getElementById("jobmodal");
+const modal = document.getElementById("jobModal");
 const modalBody = document.getElementById("modalBody");
 const closeModal = document.getElementById("closeModal");
 
 
 /*
-求人一覧表示
+  求人一覧表示
 */
 
-function renderjobs(data) {
+function renderJobs(data) {
 
-jobList.innerHTML = "";
+  jobList.innerHTML = "";
 
-if (data.length === 0) {
+  if (data.length === 0) {
 
-  jobList.innerHTML =`
-  <div class=""job-card">
-  <h3>求人が見つかりませんでした</h3>
-  <p class="job-meta">
-  条件を変更してもう一度検索してください。
-  </p>
-  </div>
-  `;
+    jobList.innerHTML = `
+      <div class="job-card">
+        <h3>求人が見つかりませんでした</h3>
+        <p class="job-meta">
+          条件を変更してもう一度検索してください。
+        </p>
+      </div>
+    `;
 
-  return;
+    return;
+  }
+
+
+  data.forEach(job => {
+
+    const card = document.createElement("article");
+
+    card.className = "job-card";
+
+    card.innerHTML = `
+      <span class="job-tag">${job.jobType}</span>
+
+      <h3>${job.facility}</h3>
+
+      <p class="job-meta">
+        ${job.employment} ・ ${job.location}
+      </p>
+
+      <p class="job-meta">
+        勤務時間：${job.workingHours}
+      </p>
+
+      <p class="job-salary">
+        ${job.salary}
+      </p>
+    `;
+
+    card.addEventListener("click", () => {
+      openJob(job);
+    });
+
+    jobList.appendChild(card);
+  });
 }
-
-
-data.forEach(job => {
-
-             const card = document.createElement("article");
-
-             card.className = "job-card";
-
-             card.innerHTML = `
-             <span class="jpb-tag">${job.Type}</span>
-
-             <h3>${job.facility}</h3>
-
-             <p class="job-meta">
-             ${job.employment} ・ ${job.location}
-             </p>
-
-             <p class="job-meta">
-               勤務時間 : 4{job.location}
-               </p>
-
-               <p class="job-salary">
-               ${job.salary}
-               </p>
-               `;
-
-             card.addEventListener(click() => {
-               openjob(job);
-             });
-
-jobList.appendChild(card);
-});
 
 
 /*
-求人詳細
+  求人詳細
 */
 
-function openjob(job) {
+function openJob(job) {
 
-let phoneArea ="";
+  let phoneArea = "";
 
-if (job.phoneAvailable && job.phone) {
+  if (job.phoneAvailable && job.phone) {
 
-  phoneArea = `
-  <a
-  href="tel:${job.phone}"
-  onclick="return confirmPhone()"
-  >
-  電話でお問い合わせる
-               </a>
+    phoneArea = `
+      <a
+        href="tel:${job.phone}"
+        onclick="return confirmPhone()"
+      >
+        電話で問い合わせる
+      </a>
 
-               <p style="font-size:12px; margin-top:10px;">
-               電話でお問い合わせの際は、
-               冒頭に「GUADIANを見て」とお伝えください。
-                                   </p>
-                                   ;
+      <p style="font-size:12px; margin-top:10px;">
+        電話でお問い合わせの際は、
+        冒頭に「GUARDIANを見て」とお伝えください。
+      </p>
+    `;
 
   } else {
 
-  phoneArea = `
-  <p>
-    この施設では電話によるお問い合わせを受け付けていません。
-               </p>
-  `;
-}
+    phoneArea = `
+      <p>
+        この施設では電話による問い合わせを受け付けていません。
+      </p>
+    `;
+  }
 
-cont applicationArea = job.application
-?`
-<a href="#" onclick= "applyjob(event, `${job.facility}`)">
-    この求人に応募する
-  </a>
 
-  : "";
+  const applicationArea = job.application
+    ? `
+      <a href="#" onclick="applyJob(event, '${job.facility}')">
+        この求人に応募する
+      </a>
+    `
+    : "";
+
 
   modalBody.innerHTML = `
 
     <span class="job-tag">
-    ${job.jobtype}
-               </span>
+      ${job.jobType}
+    </span>
 
-               <h2>${job.facility}</h2>
-
-
-               <div class="modal-section">
-
-               <h3>求人情報</h3>
-
-               <p>
-               雇用形態　：　${job.employment}
-  </p>
-
-  <p>
-  給与 : ${job.salary}
-  </p>
-
-  <p>
-  勤務時間 : ${job.workingHours}
-  </p>
-
-  </div>
-
-  <div class="modal-section">
-
-  <h3>職場の雰囲気</h3>
-
-  <p>
-  ${job.atmosphere}
-    </p>
-  
-  </div>
+    <h2>${job.facility}</h2>
 
 
-  <div class="modal-setion">
+    <div class="modal-section">
 
-  <h3>職員の声【匿名】</h3>
+      <h3>求人情報</h3>
 
-  <p>
-  <strong>よかったこと</strong><br>
-  ${job.good}
-    </p>
+      <p>
+        雇用形態：${job.employment}
+      </p>
 
-    <br>
+      <p>
+        給与：${job.salary}
+      </p>
 
-    <p>
-    <strong>大変なこと</strong><br>
-    ${job.difficult}
-               </p>
+      <p>
+        勤務地：${job.location}
+      </p>
 
-               <br>
+      <p>
+        勤務時間：${job.workingHours}
+      </p>
 
-               <p>
-               <strong>こんな人に向いています</strong><br>
-               ${job.suitaboe}
-               </p>
+    </div>
 
-               </div>
 
-               <div class="modal-section">
+    <div class="modal-section">
 
-               <h3>お問い合わせ</h3>
+      <h3>職場の雰囲気</h3>
 
-               ${phoneArea}
+      <p>
+        ${job.atmosphere}
+      </p>
 
-               </div>
+    </div>
 
-               <div class="modal-actions">
 
-               ${applicationArea}
+    <div class="modal-section">
 
-               <a
-               href="mmailto:example.com?subject=GUADIANについてのお問い合わせ">
-               お問い合わせフォーム
-               </a>
+      <h3>匿名職員の声</h3>
 
-               </div>
+      <p>
+        <strong>良かったこと</strong><br>
+        ${job.good}
+      </p>
 
-               `;
+      <br>
+
+      <p>
+        <strong>大変なこと</strong><br>
+        ${job.difficult}
+      </p>
+
+      <br>
+
+      <p>
+        <strong>こんな人に向いています</strong><br>
+        ${job.suitable}
+      </p>
+
+    </div>
+
+
+    <div class="modal-section">
+
+      <h3>お問い合わせ</h3>
+
+      ${phoneArea}
+
+    </div>
+
+
+    <div class="modal-actions">
+
+      ${applicationArea}
+
+      <a
+        href="mailto:example@example.com?subject=GUARDIANについてのお問い合わせ"
+      >
+        問い合わせフォーム
+      </a>
+
+    </div>
+
+  `;
+
 
   modal.classList.add("active");
 }
 
+
 /*
   電話確認
-  */
+*/
 
-function confirmPhone(){
+function confirmPhone() {
 
   return confirm(
     "電話でお問い合わせの際は、\n\n" +
-    "「GUADIANを見て、求人についてお伺いしたいのですが」\n\n" +
+    "「GUARDIANを見て、求人についてお伺いしたいのですが」\n\n" +
     "と最初にお伝えください。\n\n" +
     "電話を開始しますか？"
-    );
+  );
 }
 
-  
+
 /*
   応募
-  */
+*/
 
-function applyJob(event,facility){
+function applyJob(event, facility) {
 
   event.preventDefault();
 
   alert(
     `${facility}への応募機能はβ版では準備中です。\n\n` +
     "正式版では応募フォームを実装します。"
-    );
+  );
 }
 
 
 /*
   検索
-  */
+*/
 
 function searchJobs() {
 
   const keyword =
     searchInput.value
-  .trim()
-  .toLowerCase();
+      .trim()
+      .toLowerCase();
 
   const type =
-    jobTypeFilter.vaue;
+    jobTypeFilter.value;
 
 
   const filtered =
     jobs.filter(job => {
 
-                const text =
-                  `${job.facility} ${job.jobType} ${job.location}`
-      .toLowerCase();
+      const text =
+        `${job.facility} ${job.jobType} ${job.location}`
+          .toLowerCase();
 
-                const keywordMatch =
-                  kyword === "" ||
-                  text.includes(kyword);
+      const keywordMatch =
+        keyword === "" ||
+        text.includes(keyword);
 
-                const typeMatch =
-                  type === "" ||
-                  job.jobType ===type;
+      const typeMatch =
+        type === "" ||
+        job.jobType === type;
 
-                return kywordMatch && typeMatch;
+      return keywordMatch && typeMatch;
 
     });
 
@@ -358,20 +370,23 @@ function searchJobs() {
 
 
 /*
-イべント
-  */
+  イベント
+*/
 
 searchButton.addEventListener(
   "click",
   searchJobs
-  );
+);
 
-searchInput.addEventLidstener(
+
+searchInput.addEventListener(
   "keydown",
-  event =>{
+  event => {
 
-  if (event.key === "Enter") {
-    searchJobs();
+    if (event.key === "Enter") {
+      searchJobs();
+    }
+
   }
 );
 
@@ -379,17 +394,25 @@ searchInput.addEventLidstener(
 closeModal.addEventListener(
   "click",
   () => {
-
-  if 8event.terget === modal) {
-    modal.classList.rmove("active");
+    modal.classList.remove("active");
   }
+);
+
+
+modal.addEventListener(
+  "click",
+  event => {
+
+    if (event.target === modal) {
+      modal.classList.remove("active");
+    }
 
   }
-  );
+);
 
 
 /*
   初期表示
-  */
+*/
 
 renderJobs(jobs);
