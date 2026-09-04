@@ -124,4 +124,272 @@ if (data.length === 0) {
   </div>
   `;
 
+  return;
+}
+
+
+data.forEach(job => {
+
+             const card = document.createElement("article");
+
+             card.className = "job-card";
+
+             card.innerHTML = `
+             <span class="jpb-tag">${job.Type}</span>
+
+             <h3>${job.facility}</h3>
+
+             <p class="job-meta">
+             ${job.employment} ・ ${job.location}
+             </p>
+
+             <p class="job-meta">
+               勤務時間 : 4{job.location}
+               </p>
+
+               <p class="job-salary">
+               ${job.salary}
+               </p>
+               `;
+
+             card.addEventListener(click() => {
+               openjob(job);
+             });
+
+jobList.appendChild(card);
+});
+
+
+/*
+求人詳細
+*/
+
+function openjob(job) {
+
+let phoneArea ="";
+
+if (job.phoneAvailable && job.phone) {
+
+  phoneArea = `
+  <a
+  href="tel:${job.phone}"
+  onclick="return confirmPhone()"
+  >
+  電話でお問い合わせる
+               </a>
+
+               <p style="font-size:12px; margin-top:10px;">
+               電話でお問い合わせの際は、
+               冒頭に「GUADIANを見て」とお伝えください。
+                                   </p>
+                                   ;
+
+  } else {
+
+  phoneArea = `
+  <p>
+    この施設では電話によるお問い合わせを受け付けていません。
+               </p>
+  `;
+}
+
+cont applicationArea = job.application
+?`
+<a href="#" onclick= "applyjob(event, `${job.facility}`)">
+    この求人に応募する
+  </a>
+
+  : "";
+
+  modalBody.innerHTML = `
+
+    <span class="job-tag">
+    ${job.jobtype}
+               </span>
+
+               <h2>${job.facility}</h2>
+
+
+               <div class="modal-section">
+
+               <h3>求人情報</h3>
+
+               <p>
+               雇用形態　：　${job.employment}
+  </p>
+
+  <p>
+  給与 : ${job.salary}
+  </p>
+
+  <p>
+  勤務時間 : ${job.workingHours}
+  </p>
+
+  </div>
+
+  <div class="modal-section">
+
+  <h3>職場の雰囲気</h3>
+
+  <p>
+  ${job.atmosphere}
+    </p>
   
+  </div>
+
+
+  <div class="modal-setion">
+
+  <h3>職員の声【匿名】</h3>
+
+  <p>
+  <strong>よかったこと</strong><br>
+  ${job.good}
+    </p>
+
+    <br>
+
+    <p>
+    <strong>大変なこと</strong><br>
+    ${job.difficult}
+               </p>
+
+               <br>
+
+               <p>
+               <strong>こんな人に向いています</strong><br>
+               ${job.suitaboe}
+               </p>
+
+               </div>
+
+               <div class="modal-section">
+
+               <h3>お問い合わせ</h3>
+
+               ${phoneArea}
+
+               </div>
+
+               <div class="modal-actions">
+
+               ${applicationArea}
+
+               <a
+               href="mmailto:example.com?subject=GUADIANについてのお問い合わせ">
+               お問い合わせフォーム
+               </a>
+
+               </div>
+
+               `;
+
+  modal.classList.add("active");
+}
+
+/*
+  電話確認
+  */
+
+function confirmPhone(){
+
+  return confirm(
+    "電話でお問い合わせの際は、\n\n" +
+    "「GUADIANを見て、求人についてお伺いしたいのですが」\n\n" +
+    "と最初にお伝えください。\n\n" +
+    "電話を開始しますか？"
+    );
+}
+
+  
+/*
+  応募
+  */
+
+function applyJob(event,facility){
+
+  event.preventDefault();
+
+  alert(
+    `${facility}への応募機能はβ版では準備中です。\n\n` +
+    "正式版では応募フォームを実装します。"
+    );
+}
+
+
+/*
+  検索
+  */
+
+function searchJobs() {
+
+  const keyword =
+    searchInput.value
+  .trim()
+  .toLowerCase();
+
+  const type =
+    jobTypeFilter.vaue;
+
+
+  const filtered =
+    jobs.filter(job => {
+
+                const text =
+                  `${job.facility} ${job.jobType} ${job.location}`
+      .toLowerCase();
+
+                const keywordMatch =
+                  kyword === "" ||
+                  text.includes(kyword);
+
+                const typeMatch =
+                  type === "" ||
+                  job.jobType ===type;
+
+                return kywordMatch && typeMatch;
+
+    });
+
+
+  renderJobs(filtered);
+}
+
+
+/*
+イべント
+  */
+
+searchButton.addEventListener(
+  "click",
+  searchJobs
+  );
+
+searchInput.addEventLidstener(
+  "keydown",
+  event =>{
+
+  if (event.key === "Enter") {
+    searchJobs();
+  }
+);
+
+
+closeModal.addEventListener(
+  "click",
+  () => {
+
+  if 8event.terget === modal) {
+    modal.classList.rmove("active");
+  }
+
+  }
+  );
+
+
+/*
+  初期表示
+  */
+
+renderJobs(jobs);
