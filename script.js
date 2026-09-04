@@ -25,7 +25,7 @@ const jobs = [
     suitable:
       "子どもとじっくり関わりたい方に向いています。",
 
-    phone: "090-0000-0000",
+    phone: "090-XXXX-XXXX",
 
     phoneAvailable: true,
 
@@ -81,7 +81,7 @@ const jobs = [
     suitable:
       "食を通して子どもたちを支えたい方に向いています。",
 
-    phone: "090-1111-1111",
+    phone: "090-XXXX-XXXX",
 
     phoneAvailable: true,
 
